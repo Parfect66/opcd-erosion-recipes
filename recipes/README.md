@@ -63,7 +63,7 @@ The most useful for erosion prep is `subdividemesh`:
   subdivide that selection manually instead and keep it out of the recipe.
 
 ## Recipes
-- `sea_cliff.json` — rugged coastal cliff. **Now self-contained:** two
+- `sea_cliff.json` — rugged coastal cliff. **Confirmed working on-course.** **Now self-contained:** two
   `subdividemesh` steps (the 2x prep that worked on the Meloneras cliffs) run
   first, then Pass 1 main carve (channels/relief), then Pass 2 light skip-ratio +
   randomize to de-regularize and add outcrops. Assumes the cliffs are a **separate
@@ -82,7 +82,7 @@ The most useful for erosion prep is `subdividemesh`:
   it connects flow into branching, incised dendritic channels rather than isolated
   pits. Low durability + high erosion amount cut deep; low sediment keeps the
   channels incised. Pass 2 (skip-ratio 0.15 + randomize) breaks the network up so
-  it doesn't look uniform. **Self-contained:** two `subdividemesh` steps run first
+  it doesn't look uniform. **Confirmed working on-course.** **Self-contained:** two `subdividemesh` steps run first
   (same subdivide note as sea_cliff — assumes the ravine areas are **separate mesh
   objects**; delete those steps and subdivide by hand if they're part of a larger
   mesh).
@@ -91,7 +91,7 @@ The most useful for erosion prep is `subdividemesh`:
   moderate erosion amount, **lower sediment (0.35) and smoothing OFF** so texture
   survives, ruffle 0.45 for surface grain, lower fluidity (8) to keep relief
   localized rather than channelised, plus a heavy skip-ratio (0.25) randomize pass
-  for patchiness. **Now self-contained:** two `subdividemesh` steps run first — a
+  for patchiness. **Confirmed working on-course** (once subdivided). **Now self-contained:** two `subdividemesh` steps run first — a
   coarse wasteland mesh has too few verts for erosion to bite, so without
   subdivision it stays smooth no matter the sliders (this density issue, not the
   settings, was the real cause of the early "too smooth" results). Assumes the
