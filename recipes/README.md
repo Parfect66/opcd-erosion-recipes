@@ -91,9 +91,13 @@ The most useful for erosion prep is `subdividemesh`:
   moderate erosion amount, **lower sediment (0.35) and smoothing OFF** so texture
   survives, ruffle 0.45 for surface grain, lower fluidity (8) to keep relief
   localized rather than channelised, plus a heavy skip-ratio (0.25) randomize pass
-  for patchiness. (v1 was too smooth — high sediment + smoothing erased everything;
-  rebalanced.) Use over large wasteland areas; coarser subdivision is fine here.
-  If still too tame, nudge `ruffle` to ~0.55 and `erosion_amount` up; if too rough,
-  pull `ruffle` back toward 0.35.
+  for patchiness. **Now self-contained:** two `subdividemesh` steps run first — a
+  coarse wasteland mesh has too few verts for erosion to bite, so without
+  subdivision it stays smooth no matter the sliders (this density issue, not the
+  settings, was the real cause of the early "too smooth" results). Assumes the
+  wasteland is a **separate mesh object** (delete the subdivide steps if it's part
+  of a larger mesh and subdivide the selection by hand). If still too tame after
+  this, nudge `ruffle` to ~0.55 and `erosion_amount` up; if too rough, pull `ruffle`
+  back toward 0.35.
 
 All "Prep" notes assume **Use Erosion Selection** with the target verts selected.
