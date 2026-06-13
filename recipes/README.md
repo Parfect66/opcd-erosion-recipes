@@ -44,3 +44,12 @@ so passes can be short. Available keys (from `opcd_erosion_props`):
   Pass 2: light skip-ratio + randomize pass to de-regularize and add outcrops.
   Prep: subdivide the cliff selection to ~0.5-1.0 m edges first, or erosion has
   no detail to bite into.
+- `inland_hill.json` — soft, rolling weathered hillside. Single gentle pass: high
+  sediment + high fluidity for smooth rounded relief, low ruffle, light smoothing.
+  Good for non-coastal slopes and gentle mounding.
+- `rocky_headland.json` — sharp, exposed rock promontory. More aggressive than
+  sea_cliff: low durability/sediment, higher erosion amount and ruffle for bare
+  jagged faces. Pass 2 adds a heavier skip-ratio (0.20) randomize pass for strong
+  resistant outcrops. Same subdivision prep as sea_cliff.
+
+All "Prep" notes assume **Use Erosion Selection** with the target verts selected.
