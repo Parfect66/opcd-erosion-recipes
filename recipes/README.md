@@ -87,9 +87,13 @@ The most useful for erosion prep is `subdividemesh`:
   objects**; delete those steps and subdivide by hand if they're part of a larger
   mesh).
 - `arid_wasteland.json` — broad weathered desert scrubland between holes and
-  surrounds. Deliberately low-drama: shallow erosion amount, high sediment and
-  light smoothing keep it gently undulating, while ruffle + a heavy skip-ratio
-  (0.25) randomize pass add patchy micro-relief and rills without deep features.
-  Use over large flat-ish wasteland areas; coarser subdivision is fine here.
+  surrounds. Granular roughness and shallow rills without cliff-scale drama:
+  moderate erosion amount, **lower sediment (0.35) and smoothing OFF** so texture
+  survives, ruffle 0.45 for surface grain, lower fluidity (8) to keep relief
+  localized rather than channelised, plus a heavy skip-ratio (0.25) randomize pass
+  for patchiness. (v1 was too smooth — high sediment + smoothing erased everything;
+  rebalanced.) Use over large wasteland areas; coarser subdivision is fine here.
+  If still too tame, nudge `ruffle` to ~0.55 and `erosion_amount` up; if too rough,
+  pull `ruffle` back toward 0.35.
 
 All "Prep" notes assume **Use Erosion Selection** with the target verts selected.
