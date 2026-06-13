@@ -52,4 +52,16 @@ so passes can be short. Available keys (from `opcd_erosion_props`):
   jagged faces. Pass 2 adds a heavier skip-ratio (0.20) randomize pass for strong
   resistant outcrops. Same subdivision prep as sea_cliff.
 
+- `barranco_runoff.json` — rocky dry run-off valleys / ravines (barrancos) like
+  those cutting through arid coastal courses. **High fluidity (14)** is the key:
+  it connects flow into branching, incised dendritic channels rather than isolated
+  pits. Low durability + high erosion amount cut deep; low sediment keeps the
+  channels incised. Pass 2 (skip-ratio 0.15 + randomize) breaks the network up so
+  it doesn't look uniform. Prep: subdivide to ~0.5-1.0 m edges so channels can form.
+- `arid_wasteland.json` — broad weathered desert scrubland between holes and
+  surrounds. Deliberately low-drama: shallow erosion amount, high sediment and
+  light smoothing keep it gently undulating, while ruffle + a heavy skip-ratio
+  (0.25) randomize pass add patchy micro-relief and rills without deep features.
+  Use over large flat-ish wasteland areas; coarser subdivision is fine here.
+
 All "Prep" notes assume **Use Erosion Selection** with the target verts selected.
