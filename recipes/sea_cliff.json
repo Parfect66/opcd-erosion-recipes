@@ -1,0 +1,30 @@
+[
+    {
+        "erosion": {
+            "iterations": 8,
+            "erosion_durability": 0.45,
+            "erosion_amount": 1.25,
+            "sediment_amount": 0.35,
+            "erosion_fluidity_iterations": 10,
+            "ruffle": 0.45,
+            "use_erosion_selection": true,
+            "erosion_selection_skip_ratio": 0.0,
+            "erosion_selection_randomize": false,
+            "use_smoothing": false
+        }
+    },
+    {
+        "erosion": {
+            "iterations": 2,
+            "erosion_durability": 0.45,
+            "erosion_amount": 0.75,
+            "sediment_amount": 0.35,
+            "erosion_fluidity_iterations": 10,
+            "ruffle": 0.30,
+            "use_erosion_selection": true,
+            "erosion_selection_skip_ratio": 0.15,
+            "erosion_selection_randomize": true,
+            "use_smoothing": false
+        }
+    }
+]
