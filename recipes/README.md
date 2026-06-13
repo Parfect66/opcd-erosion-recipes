@@ -62,6 +62,13 @@ The most useful for erosion prep is `subdividemesh`:
   is part of a larger combined terrain mesh, this would over-densify everything —
   subdivide that selection manually instead and keep it out of the recipe.
 
+**Performance — subdivide cost scales hard.** Each `subdividemesh` ~4× the face
+count, so 2× = ~16×. Erosion cost ≈ vert count × total iterations × fluidity
+iterations. On a **large** object, a baked 2× subdivide plus many passes can hang
+Blender. For large areas either (a) **split the mesh into smaller separate chunks**
+and run the recipe per chunk (keeps full detail, bounds the cost), or (b) use a
+**1× / lighter-iteration** recipe variant (see `arid_wasteland_large.json`).
+
 ## Recipes
 - `sea_cliff.json` — rugged coastal cliff. **Confirmed working on-course.** **Now self-contained:** two
   `subdividemesh` steps (the 2x prep that worked on the Meloneras cliffs) run
@@ -98,6 +105,13 @@ The most useful for erosion prep is `subdividemesh`:
   wasteland is a **separate mesh object** (delete the subdivide steps if it's part
   of a larger mesh and subdivide the selection by hand). If still too tame after
   this, nudge `ruffle` to ~0.55 and `erosion_amount` up; if too rough, pull `ruffle`
-  back toward 0.35.
+  back toward 0.35. **For large wasteland meshes the 2× subdivide can hang Blender —
+  use `arid_wasteland_large.json` or split the mesh into chunks (see Performance).**
+- `arid_wasteland_large.json` — large-mesh-safe variant of the above. Only **1×**
+  subdivide (≈4× polys not 16×), fewer iterations and lower fluidity (6) to keep
+  processing tractable, with ruffle bumped to 0.52 so texture still reads at the
+  lower density. Use on big single wasteland objects that hang with the standard
+  recipe; for very large areas, prefer splitting into chunks and running the
+  standard recipe per chunk for best detail.
 
 All "Prep" notes assume **Use Erosion Selection** with the target verts selected.
