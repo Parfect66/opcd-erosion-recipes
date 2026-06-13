@@ -39,11 +39,36 @@ so passes can be short. Available keys (from `opcd_erosion_props`):
 | `smoothing_strength` | float | keep <= 0.10 for cliffs; 0.30 erases relief |
 | `smoothing_iterations` | int | |
 
+## Other recipe operations
+
+Recipes are an ordered array, so non-erosion OPCD operations can be mixed in.
+The most useful for erosion prep is `subdividemesh`:
+
+```json
+{ "subdividemesh": { "subdivide_inset": 1 } }
+```
+
+**Behaviour (important):**
+- Performs **one** subdivision per entry (`number_cuts=1`). For "2x", include the
+  entry twice.
+- `subdivide_inset` is **not** a count — it's how many loops in from the boundary
+  to inset before cutting. `1` = subdivide the whole interior while preserving the
+  boundary loop (matches erosion's boundary preservation).
+- **It ignores the vertex selection** and subdivides the **entire mesh object's**
+  interior. It also only acts on objects whose name contains both `Mesh` and
+  `Spline`.
+- Therefore only bake `subdividemesh` into a recipe when the target is a
+  **separate mesh object** (e.g. cliffs split out from the hole). If the feature
+  is part of a larger combined terrain mesh, this would over-densify everything —
+  subdivide that selection manually instead and keep it out of the recipe.
+
 ## Recipes
-- `sea_cliff.json` — rugged coastal cliff. Pass 1: main carve (channels/relief).
-  Pass 2: light skip-ratio + randomize pass to de-regularize and add outcrops.
-  Prep: subdivide the cliff selection to ~0.5-1.0 m edges first, or erosion has
-  no detail to bite into.
+- `sea_cliff.json` — rugged coastal cliff. **Now self-contained:** two
+  `subdividemesh` steps (the 2x prep that worked on the Meloneras cliffs) run
+  first, then Pass 1 main carve (channels/relief), then Pass 2 light skip-ratio +
+  randomize to de-regularize and add outcrops. Assumes the cliffs are a **separate
+  mesh object** (see subdivide note above). If your cliffs are part of a larger
+  mesh, delete the two `subdividemesh` entries and subdivide the selection by hand.
 - `inland_hill.json` — soft, rolling weathered hillside. Single gentle pass: high
   sediment + high fluidity for smooth rounded relief, low ruffle, light smoothing.
   Good for non-coastal slopes and gentle mounding.

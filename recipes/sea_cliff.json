@@ -1,5 +1,15 @@
 [
     {
+        "subdividemesh": {
+            "subdivide_inset": 1
+        }
+    },
+    {
+        "subdividemesh": {
+            "subdivide_inset": 1
+        }
+    },
+    {
         "erosion": {
             "iterations": 8,
             "erosion_durability": 0.45,
