@@ -1,0 +1,32 @@
+--- a/operators/afrod/afrod_operators.py
++++ b/operators/afrod/afrod_operators.py
+@@ -9599,6 +9599,29 @@
+                     print(f"Invalid parameters: {item}")
+                     self.report({'ERROR'}, f"Invalid parameters: {item}")
+                     return {'CANCELLED'}
++            elif "erosion" in item:
++                # OPCD Erosion recipe support (added). Reads opcd.erosion_apply
++                # settings from scene.opcd_erosion_props. Only the keys present
++                # in the JSON are set; any unspecified property keeps its current
++                # value, so recipes can be as short or complete as desired.
++                sub_data = item["erosion"]
++                props = getattr(context.scene, "opcd_erosion_props", None)
++                if props is None:
++                    self.report(
++                        {'ERROR'}, "Erosion props not found (is the erosion module enabled?)")
++                    return {'CANCELLED'}
++                for key, value in sub_data.items():
++                    if hasattr(props, key):
++                        try:
++                            setattr(props, key, value)
++                        except Exception as e:
++                            print(f"Failed to set erosion.{key}={value}: {e}")
++                            self.report(
++                                {'ERROR'}, f"Failed to set erosion.{key}: {e}")
++                            return {'CANCELLED'}
++                    else:
++                        print(f"Unknown erosion property ignored: {key}")
++                bpy.ops.opcd.erosion_apply()
+             else:
+                 print(f"Command not found: {item}")
+                 self.report({'WARNING'}, f"Command not found: {item}")
